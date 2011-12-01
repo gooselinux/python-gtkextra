@@ -1,0 +1,37 @@
+diff -ur python-gtkextra/configure.in python-gtkextra-1.1.0/configure.in
+--- python-gtkextra/configure.in	2004-03-09 12:58:38.000000000 +0100
++++ python-gtkextra-1.1.0/configure.in	2009-01-09 12:33:36.000000000 +0100
+@@ -69,6 +69,11 @@
+ AC_SUBST(PYGTK_DEFSDIR)
+ AC_MSG_RESULT($PYGTK_DEFSDIR)
+ 
++AC_MSG_CHECKING(PYGTK_CODEGENDIR)
++PYGTK_CODEGENDIR=`$PKG_CONFIG --variable=codegendir pygtk-2.0`
++AC_SUBST(PYGTK_CODEGENDIR)
++AC_MSG_RESULT($PYGTK_CODEGENDIR)
++
+ AC_ARG_ENABLE(numpy,
+   AC_HELP_STRING([--disable-numpy], [Disable numeric python features]),,
+   enable_numpy=yes)
+diff -ur python-gtkextra/gtkextra/_config.py.in python-gtkextra-1.1.0/gtkextra/_config.py.in
+--- python-gtkextra/gtkextra/_config.py.in	2002-12-30 21:42:13.000000000 +0100
++++ python-gtkextra-1.1.0/gtkextra/_config.py.in	2009-01-09 12:35:17.000000000 +0100
+@@ -4,5 +4,5 @@
+ PKGDATADIR = string.replace('@datadir@/@PACKAGE@','${prefix}', PREFIX)
+ PYDIR= string.replace('@pythondir@','${prefix}', PREFIX)
+ VERSION='@VERSION@'
+-PYGTK_DEFSDIR='@PYGTK_DEFSDIR@'
++PYGTK_CODEGENDIR='@PYGTK_CODEGENDIR@'
+ del string
+diff -ur python-gtkextra/gtkextra/mycodegen.py python-gtkextra-1.1.0/gtkextra/mycodegen.py
+--- python-gtkextra/gtkextra/mycodegen.py	2009-01-09 12:25:21.000000000 +0100
++++ python-gtkextra-1.1.0/gtkextra/mycodegen.py	2009-01-09 12:35:26.000000000 +0100
+@@ -6,7 +6,7 @@
+ import _config
+ import sys
+ import os
+-sys.path.append(os.path.join(_config.PYGTK_DEFSDIR, '../'))
++sys.path.append(os.path.join(_config.PYGTK_CODEGENDIR, '../'))
+ 
+ from codegen.argtypes import matcher
+ import codegen.codegen

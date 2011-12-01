@@ -1,0 +1,11 @@
+diff -urN python-gtkextra/gtkextra/Makefile.am python-gtkextra-1.1.0/gtkextra/Makefile.am
+--- python-gtkextra/gtkextra/Makefile.am	2004-03-04 12:39:19.000000000 +0100
++++ python-gtkextra-1.1.0/gtkextra/Makefile.am	2009-06-11 18:35:58.725397148 +0200
+@@ -36,7 +36,6 @@
+ nodist__gtkextramodule_la_SOURCES = gtkextra.c
+ 
+ CLEANFILES += gtkextra.c
+-defs_DATA += gtkextra.defs gtkextra-types.defs
+ EXTRA_DIST += gtkextra.override mycodegen.py
+ 
+ CODEGEN=$(PYTHON) $(srcdir)/mycodegen.py
